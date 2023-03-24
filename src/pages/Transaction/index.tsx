@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import SearchForm from "../../components/SearchForm";
 import Summary from "../../components/Summary";
+import { Transaction } from "../../contexts/TransactionContext";
 import {
   PriceHightLight,
   TransactionContainer,
   TransactionTable,
 } from "./styles";
+import { TransactionContext } from "../../contexts/TransactionContext";
 
 export const Transactions = () => {
+  const { transactions } = useContext(TransactionContext);
   return (
     <>
       <Header />
@@ -17,63 +20,22 @@ export const Transactions = () => {
         <SearchForm />
         <TransactionTable>
           <tbody>
-            <tr>
-              <td width="50%">Frelancer Web Development</td>
-              <td>
-                <PriceHightLight variant="income"> ₪ 12.000,00</PriceHightLight>
-              </td>
-              <td>Sold</td>
-              <td>23/03/23</td>
-            </tr>
-            <tr>
-              <td width="50%">Frelancer Web Development</td>
-              <td>
-                <PriceHightLight variant="outcome">
-                  {" "}
-                  ₪ 12.000,00
-                </PriceHightLight>
-              </td>
-              <td>Sold</td>
-              <td>23/03/23</td>
-            </tr>
-            <tr>
-              <td width="50%">Frelancer Web Development</td>
-              <td>
-                <PriceHightLight variant="income"> ₪ 12.000,00</PriceHightLight>
-              </td>
-              <td>Sold</td>
-              <td>23/03/23</td>
-            </tr>
-            <tr>
-              <td width="50%">Frelancer Web Development</td>
-              <td>
-                <PriceHightLight variant="outcome">
-                  {" "}
-                  ₪ 12.000,00
-                </PriceHightLight>
-              </td>
-              <td>Sold</td>
-              <td>23/03/23</td>
-            </tr>
-            <tr>
-              <td width="50%">Frelancer Web Development</td>
-              <td>
-                <PriceHightLight variant="income"> ₪ 12.000,00</PriceHightLight>
-              </td>
-              <td>Sold</td>
-              <td>23/03/23</td>
-            </tr>
-            <tr>
-              <td width="50%">Frelancer Web Development</td>
-              <td>
-                <PriceHightLight variant="outcome">
-                  {" "}
-                  ₪ 12.000,00
-                </PriceHightLight>
-              </td>
-              <td>Sold</td>
-              <td>23/03/23</td>
-            </tr>
+            {transactions?.map((item: Transaction) => {
+              return (
+                <>
+                  <tr key={item.id}>
+                    <td width="50%">{item.description}</td>
+                    <td>
+                      <PriceHightLight variant={item.type}>
+                        ₪ {item.Price}
+                      </PriceHightLight>
+                    </td>
+                    <td>{item.category}</td>
+                    <td>{item.createAt}</td>
+                  </tr>
+                </>
+              );
+            })}
           </tbody>
         </TransactionTable>
       </TransactionContainer>

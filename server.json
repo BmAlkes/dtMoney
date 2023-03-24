@@ -1,0 +1,36 @@
+{
+  "transactions": [
+    {
+      "id": 1,
+      "description": "Web Application",
+      "type": "income",
+      "category": "Sell",
+      "Price": 14000,
+      "createAt": "2023-03-24T09:26:08.415Z"
+    },
+    {
+      "id": 2,
+      "description": "Burger",
+      "type": "outcome",
+      "category": "Buy",
+      "Price": 120,
+      "createAt": "2023-03-24T12:26:08.415Z"
+    },
+    {
+      "id": 3,
+      "description": "Salary",
+      "type": "income",
+      "category": "Sell",
+      "Price": 12000,
+      "createAt": "2023-03-24T12:26:08.415Z"
+    },
+    {
+      "id": 4,
+      "description": "Gas",
+      "type": "outcome",
+      "category": "Buy",
+      "Price": 250,
+      "createAt": "2023-03-24T12:26:08.415Z"
+    }
+  ]
+}

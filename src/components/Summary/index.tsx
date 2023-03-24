@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { SummaryCard, SummaryContainer } from "./styles";
 import {
   BsFillArrowUpCircleFill,
@@ -6,8 +6,10 @@ import {
 } from "react-icons/bs";
 import { BiShekel } from "react-icons/bi";
 import { PriceHightLight } from "../../pages/Transaction/styles";
+import { TransactionContext } from "../../contexts/TransactionContext";
 
 const Summary = () => {
+  const { transactions } = useContext(TransactionContext);
   return (
     <SummaryContainer>
       <SummaryCard>
