@@ -4,15 +4,15 @@
       "id": 1,
       "description": "Web Application",
       "type": "income",
-      "category": "Sell",
-      "Price": 14000,
+      "category": "Extra jobs",
+      "Price": 6000,
       "createAt": "2023-03-24T09:26:08.415Z"
     },
     {
       "id": 2,
       "description": "Burger",
       "type": "outcome",
-      "category": "Buy",
+      "category": "Food",
       "Price": 120,
       "createAt": "2023-03-24T12:26:08.415Z"
     },
@@ -20,7 +20,7 @@
       "id": 3,
       "description": "Salary",
       "type": "income",
-      "category": "Sell",
+      "category": "Payment",
       "Price": 12000,
       "createAt": "2023-03-24T12:26:08.415Z"
     },
@@ -28,8 +28,24 @@
       "id": 4,
       "description": "Gas",
       "type": "outcome",
-      "category": "Buy",
+      "category": "Transportation",
       "Price": 250,
+      "createAt": "2023-03-24T12:26:08.415Z"
+    },
+    {
+      "id": 5,
+      "description": "Rocketseat Ignite",
+      "type": "outcome",
+      "category": "Education",
+      "Price": 2599,
+      "createAt": "2023-03-24T12:26:08.415Z"
+    },
+    {
+      "id": 6,
+      "description": "Rent",
+      "type": "outcome",
+      "category": "Bills",
+      "Price": 2599,
       "createAt": "2023-03-24T12:26:08.415Z"
     }
   ]

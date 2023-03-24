@@ -27,6 +27,7 @@ export const TransactionProvider = ({ children }: TransactionProviderProps) => {
     }
     LoadTransaction();
   }, []);
+
   return (
     <TransactionContext.Provider value={{ transactions }}>
       {children}
