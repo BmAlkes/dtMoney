@@ -10,6 +10,7 @@ export interface Transaction {
 }
 export interface TransactionContextType {
   transactions: Transaction[];
+  fetchTransactions: (query?: string) => Promise<void>;
 }
 interface TransactionProviderProps {
   children: ReactNode;
@@ -19,17 +20,21 @@ export const TransactionContext = createContext({} as TransactionContextType);
 
 export const TransactionProvider = ({ children }: TransactionProviderProps) => {
   const [transactions, setTRansactions] = useState<Transaction[]>([]);
-  useEffect(() => {
-    async function LoadTransaction() {
-      const response = await fetch("http://localhost:3333/transactions");
-      const data = await response.json();
-      setTRansactions(data);
+  async function fetchTransactions(query?: string) {
+    const url = new URL("http://localhost:3333/transactions");
+    if (query) {
+      url.searchParams.append("q", query);
     }
-    LoadTransaction();
+    const response = await fetch(url);
+    const data = await response.json();
+    setTRansactions(data);
+  }
+  useEffect(() => {
+    fetchTransactions();
   }, []);
 
   return (
-    <TransactionContext.Provider value={{ transactions }}>
+    <TransactionContext.Provider value={{ transactions, fetchTransactions }}>
       {children}
     </TransactionContext.Provider>
   );
