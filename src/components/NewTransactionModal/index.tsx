@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as RadioGroup from "@radix-ui/react-radio-group";
 import {
@@ -13,10 +13,12 @@ import { BsArrowDownCircle, BsArrowUpCircle } from "react-icons/bs";
 import * as z from "zod";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { api } from "../../libs/axios";
+import { TransactionContext } from "../../contexts/TransactionContext";
 
 const newTransactionFormSchema = z.object({
   description: z.string(),
-  price: z.number(),
+  Price: z.number(),
   category: z.string(),
   type: z.enum(["income", "outcome"]),
 });
@@ -24,14 +26,15 @@ const newTransactionFormSchema = z.object({
 type NewTransactionFormInputs = z.infer<typeof newTransactionFormSchema>;
 
 const NewTransactionModal = () => {
-  const { register, handleSubmit, control } = useForm<NewTransactionFormInputs>(
-    {
+  const { createTransaction } = useContext(TransactionContext);
+  const { register, handleSubmit, control, reset } =
+    useForm<NewTransactionFormInputs>({
       resolver: zodResolver(newTransactionFormSchema),
-    }
-  );
+    });
 
-  const handleSubmitData = (data: NewTransactionFormInputs) => {
-    console.log(data);
+  const handleSubmitData = async (data: NewTransactionFormInputs) => {
+    createTransaction(data);
+    reset();
   };
   return (
     <Dialog.Portal>
@@ -53,7 +56,7 @@ const NewTransactionModal = () => {
             type="text"
             placeholder="Price"
             required
-            {...register("price", { valueAsNumber: true })}
+            {...register("Price", { valueAsNumber: true })}
           />
           <input
             type="text"
